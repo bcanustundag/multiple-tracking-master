@@ -49,25 +49,25 @@ public:
 	void setColors();
 	void fillZero(float **mat, int size);
 	void userClick(bool *hypClick, bool *hypUpdate, int *tx, int *ty);
-	double BlobDetectionEngine::find_eu_distance(const CvPoint& point_one, const CvPoint& point_two);
+	double find_eu_distance(const CvPoint& point_one, const CvPoint& point_two);
 	void setAreaConstraint(int area);
 	void findBlobs(IplImage *grayImg, bool drawBlobs);
 	void blobToRegions();
 	//Experimental Methods {Ongoing Research}
 	void runMatching(bool **bgMask, int ****bins, int *time); //Update color needs intel from background subtraction histogram bins
 	void fillColorToRegion(int regionId, float *hist1, float *hist2); //Paint all pixels to Blue(hist1match) or Red(Hist2match)
-	void BlobDetectionEngine::alternateMatching(bool **bgMask, int ***bins);
-	void BlobDetectionEngine::createHypothesis(bool **bgMask, int ****bins, int *time);
-	void BlobDetectionEngine::createHypothesis(bool **bgMask, int ***bins);
-	void BlobDetectionEngine::runBasicMatching(bool **bgMask, int ****bins, int *time);
+	void alternateMatching(bool **bgMask, int ***bins);
+	void createHypothesis(bool **bgMask, int ****bins, int *time);
+	void createHypothesis(bool **bgMask, int ***bins);
+	void runBasicMatching(bool **bgMask, int ****bins, int *time);
 	int findIdxOfHyp(int idd);
 	void eventResolve();
 	void setLogger(FILE *logger);
 	//void pixelClassEvaluate(bool **bgMask, int ****bins, int *time);
-	void BlobDetectionEngine::pixelClassEvaluate(bool **mask, int ***bins);
+	void pixelClassEvaluate(bool **mask, int ***bins);
 	void printIterator (int i);
-	void BlobDetectionEngine::presentate(IplImage *hypOnly);
-	void BlobDetectionEngine::debugPixel(int y, int x, int ***bins);
+	void presentate(IplImage *hypOnly);
+	void debugPixel(int y, int x, int ***bins);
 };
 
 #endif
