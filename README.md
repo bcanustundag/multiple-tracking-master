@@ -1,4 +1,4 @@
 multiple-tracking-master
 ========================
 
-Contains the background subtraction + multiple object tracking software we developed. 
+Contains background subtraction and multiple object tracking software we developed. 
