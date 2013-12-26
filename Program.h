@@ -497,6 +497,7 @@ void engineMain(int argc, char* argv[])
 	vid->finishRecord();
 	endAll = clock();
 	durationAll = double((endAll-startAll)) / sysconf(_SC_CLK_TCK);
+
 	cout << "Average (FPS):   " << (vid->frameIdx - learnFrameNum ) / durationAll << endl;
 	vid->finishRecord();
 	fclose(trackFp);

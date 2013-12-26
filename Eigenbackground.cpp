@@ -1,16 +1,16 @@
 /****************************************************************************
-*
-* Eigenbackground.cpp
-*
-* Purpose: Implementation of the Eigenbackground background subtraction 
-*					 algorithm developed by Oliver et al.
-*
-* Author: Donovan Parks, September 2007
-*
-* "A Bayesian Computer Vision System for Modeling Human Interactions"
-*   Nuria Oliver, Barbara Rosario, Alex P. Pentland 2000
-*
-******************************************************************************/
+ *
+ * Eigenbackground.cpp
+ *
+ * Purpose: Implementation of the Eigenbackground background subtraction
+ *					 algorithm developed by Oliver et al.
+ *
+ * Author: Donovan Parks, September 2007
+ *
+ * "A Bayesian Computer Vision System for Modeling Human Interactions"
+ *   Nuria Oliver, Barbara Rosario, Alex P. Pentland 2000
+ *
+ ******************************************************************************/
 
 #include "Eigenbackground.hpp"
 
@@ -35,7 +35,7 @@ Eigenbackground::~Eigenbackground()
 void Eigenbackground::Initalize(const BgsParams& param)
 {
 	m_params = (EigenbackgroundParams&)param;
-	
+
 	m_background = cvCreateImage(cvSize(m_params.Width(), m_params.Height()), IPL_DEPTH_8U, 3);
 	m_background.Clear();
 }
@@ -58,7 +58,7 @@ void Eigenbackground::Update(int frame_num, const RgbImage& data,  const BwImage
 }
 
 void Eigenbackground::Subtract(int frame_num, const RgbImage& data,  
-																BwImage& low_threshold_mask, BwImage& high_threshold_mask)
+		BwImage& low_threshold_mask, BwImage& high_threshold_mask)
 {
 	// create eigenbackground
 	if(frame_num == m_params.HistorySize())
@@ -87,13 +87,13 @@ void Eigenbackground::Subtract(int frame_num, const RgbImage& data,
 	{
 		// project new image into the eigenspace
 		int w = data.Ptr()->width;
-    int h = data.Ptr()->height;
+		int h = data.Ptr()->height;
 		int ch = data.Ptr()->nChannels;
-    CvMat* dataPt = cvCreateMat(1, w*h*ch, CV_8UC1); 
+		CvMat* dataPt = cvCreateMat(1, w*h*ch, CV_8UC1);
 		CvMat data_row;
-    cvGetRow(dataPt, &data_row, 0);
-    cvReshape(&data_row, &data_row, 3, data.Ptr()->height); 
-    cvCopy(data.Ptr(), &data_row); 
+		cvGetRow(dataPt, &data_row, 0);
+		cvReshape(&data_row, &data_row, 3, data.Ptr()->height);
+		cvCopy(data.Ptr(), &data_row);
 
 		CvMat* proj = cvCreateMat(1, m_params.EmbeddedDim(), CV_32F);
 		cvProjectPCA(dataPt, m_pcaAvg, m_eigenVectors, proj);
@@ -120,7 +120,7 @@ void Eigenbackground::Subtract(int frame_num, const RgbImage& data,
 						bgHigh = false;
 					index++;
 				}
-				
+
 				if(!bgLow)
 				{
 					low_threshold_mask(r,c) = FOREGROUND;
@@ -140,7 +140,7 @@ void Eigenbackground::Subtract(int frame_num, const RgbImage& data,
 				}
 			}
 		}
-		
+
 		cvReleaseMat(&result);
 		cvReleaseMat(&proj);		
 		cvReleaseMat(&dataPt);
@@ -167,8 +167,10 @@ void Eigenbackground::UpdateHistory(int frame_num, const RgbImage& new_frame)
 	if(frame_num < m_params.HistorySize())
 	{
 		CvMat src_row;
-    cvGetRow(m_pcaData, &src_row, frame_num);
-    cvReshape(&src_row, &src_row, 3, new_frame.Ptr()->height); 
-    cvCopy(new_frame.Ptr(), &src_row); 
+		cvGetRow(m_pcaData, &src_row, frame_num);
+		cvReshape(&src_row, &src_row, 3, new_frame.Ptr()->height);
+		cvCopy(new_frame.Ptr(), &src_row);
 	}
+
 }
+

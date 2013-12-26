@@ -85,5 +85,4 @@ public:
 	bool **create2dKernelBool(int xSize, int ySize, bool scalar);
 
 };
-
 #endif
