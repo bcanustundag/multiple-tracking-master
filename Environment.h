@@ -22,7 +22,7 @@ using namespace std;
 #define testDbFile7 ("../../../data/testDatabase/sample320x240.mp4")
 #define testDbFile8 ("../../../data/testDatabase/BALLS.avi")
 #define testDbFile9 ("../../../data/akvaryum/320x240/video1_cam67.avi")
-#define testDbFile10 ("../../../data/testDatabase/pets2001/camera1.avi")
+#define testDbFile10 ("/home/inovatink/Desktop/dataset_insaat/last_cropped/07_cropped_data.avi")
 #define testDbFile11 ("../../../data/testDatabase/pets2001/camera2.avi")
 #define shahDbFile1 ("../../../data/testDatabase/shah/carscene.avi")
 #define shahDbFile2 ("../../../data/testDatabase/shah/fountainscene.avi")

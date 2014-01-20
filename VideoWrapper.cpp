@@ -56,10 +56,7 @@ VideoWrapper::VideoWrapper(int argc, char**argv)
 
 void VideoWrapper::startRecord(char* filename, int fps, int isColor)
 {
-
-
-	strcpy(filenameBuffer, "videoOutputs/");
-	strcat(filenameBuffer, filename);
+   	strcat(filenameBuffer, filename);
 	if ( fps == NULL )
 		fps = this->fps;
 	if ( isColor == NULL )
@@ -84,11 +81,11 @@ void VideoWrapper::startRecord(char* filename, int fps, int isColor)
 void VideoWrapper::WriteFrame(IplImage *img)
 {
 	if ( multiOutput ){
-		//int padding = 20;
-		//cvPutText(bufferImg, "Frame", cvPoint(padding,padding), &font, cvScalar(255,255,255,255) );
-		//cvPutText(bufferImg, "Background Subtraction", cvPoint(padding+width,padding), &font, cvScalar(255,255,255,255) );
-		//cvPutText(bufferImg, "Blob Detection", cvPoint(padding,padding+height), &font, cvScalar(255,255,255,255) );
-		//cvPutText(bufferImg, "Tracking", cvPoint(padding+width,padding+height), &font, cvScalar(255,255,255,255) );
+		int padding = 20;
+		cvPutText(bufferImg, "Frame", cvPoint(padding,padding), &font, cvScalar(255,255,255,255) );
+		cvPutText(bufferImg, "Background Subtraction", cvPoint(padding+width,padding), &font, cvScalar(255,255,255,255) );
+		cvPutText(bufferImg, "Blob Detection", cvPoint(padding,padding+height), &font, cvScalar(255,255,255,255) );
+		cvPutText(bufferImg, "Tracking", cvPoint(padding+width,padding+height), &font, cvScalar(255,255,255,255) );
 		cvWriteFrame(recCapture, bufferImg);
 		//cvSetZero(bufferImg);
 		cvSet(bufferImg, cvScalar(255,255,255,255));
