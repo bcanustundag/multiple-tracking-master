@@ -1,2 +1,1 @@
-#ignore folders below
-*/Debug
+Debug/**/*
